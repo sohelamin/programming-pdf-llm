@@ -4,9 +4,9 @@ A local question-answering (QA) system for programming PDFs using LangChain, Chr
 
 ## Features
 - Loads and splits PDFs into chunks
-- Embeds chunks using Ollama (default) or other LLMs
+- Embeds chunks using llm models
 - Stores embeddings in a persistent Chroma vector database
-- Interactive QA: ask questions and get answers with source citations
+- Interactive QA
 
 ## Requirements
 - Python 3.9+
