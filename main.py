@@ -1,6 +1,7 @@
-from langchain_ollama.llms import OllamaLLM
-from langchain_chroma import Chroma
 from langchain_ollama import OllamaEmbeddings
+from langchain_chroma import Chroma
+from langchain_ollama.llms import OllamaLLM
+from langchain.prompts import PromptTemplate
 from langchain.chains import RetrievalQA
 from config import *
 
@@ -19,7 +20,6 @@ def initialize_qa_system():
         
         llm = OllamaLLM(model=LLM_MODEL, temperature=0)
         
-        from langchain.prompts import PromptTemplate
         prompt_template = (
             "You are an expert programming assistant. "
             "Use the following context from programming PDFs to answer the user's question as accurately and simply as possible. "
@@ -45,7 +45,6 @@ def initialize_qa_system():
 def interactive_query(qa_system):
     """Run interactive query loop"""
     print("\nReady to answer questions about your programming PDFs!")
-    print(f"Loaded model: {LLM_MODEL}")
     print("Type 'exit' to quit.\n")
     
     while True:
@@ -60,7 +59,6 @@ def interactive_query(qa_system):
             result = qa_system.invoke({"query": query})
             print("\nAnswer:", result["result"])
             
-            # Show source documents if available
             if "source_documents" in result:
                 print("\nSources:")
                 for i, doc in enumerate(result["source_documents"], 1):
